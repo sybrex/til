@@ -19,7 +19,7 @@ def home():
 @app.route('/admin/login', methods=['GET', 'POST'])    
 def login():
     form = forms.LoginForm()
-    if form.validate_on_submit():        
+    if form.validate_on_submit():
         user = User.objects(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
@@ -34,3 +34,12 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+@app.route('/admin')
+@login_required
+def admin():
+    logbookPost = LogbookPost.objects(id=id).get()
+    form = forms.LogbookForm()
+    form.content.data = logbookPost.content
+    return render_template('admin/logbook.html', form=form, legend='Edit logbook post', action='logbook_update', id=id)

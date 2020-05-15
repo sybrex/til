@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en-us">  
+<!doctype html>
+<html lang="en">
   {% include 'head.html' %}
-  <body class="theme-base">
-    {% include 'sidebar.html' %}
-    <div class="content container">
-      {% include 'flash.html' %}  
+  <body>
+    <main role="main" class="container">
       {% block content %}{% endblock %}
-    </div>
+    </main>
     {% include 'footer.html' %}
   </body>
 </html>
