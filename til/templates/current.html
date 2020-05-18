@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="masthead mb-auto">
+<div class="cover-container d-flex w-100 h-100 p-2 mx-auto flex-column">
+    <header class="masthead">
         <div class="inner">
             <h3 class="masthead-brand">Timeline</h3>
             <nav class="nav nav-masthead justify-content-center">
@@ -12,5 +12,25 @@
             </nav>
         </div>
     </header>
+
+    <table class="table table-striped table-dark table-sm">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+    </tbody>
+    </table>
+
 </div>
 {% endblock %}
