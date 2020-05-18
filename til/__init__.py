@@ -14,4 +14,4 @@ bcrypt = Bcrypt()
 login_manager = LoginManager(app)
 
 from til import terminal
-from til import routes
+from til import views
