@@ -9,6 +9,7 @@ flask-mongoengine = "*"
 flask-login = "*"
 flask-bcrypt = "*"
 python-dotenv = "*"
+praw = "*"
 
 [dev-packages]
 
