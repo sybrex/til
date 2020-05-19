@@ -19,13 +19,23 @@ class User(Document, UserMixin):
 
 
 class Til(Document):
+    STATUS_CURRENT = 'current'
+    STATUS_BACKLOG = 'backlog'
+    STATUS_ICEBOX = 'icebox'
+    STATUS_ARCHIVE = 'archive'
+    STATUSES = (
+        (STATUS_CURRENT, 'current'),
+        (STATUS_BACKLOG, 'backlog'),
+        (STATUS_ICEBOX, 'icebox'),
+        (STATUS_ARCHIVE, 'archive'),
+    )
     SOURCE_REDDIT = 'reddit'
     SOURCE_TWITTER = 'twitter'
     SOURCE_YOUTUBE = 'youtube'
     SOURCES = (
         (SOURCE_REDDIT, 'Reddit'),
         (SOURCE_TWITTER, 'Twitter'),
-        (SOURCE_YOUTUBE, 'Youtube')
+        (SOURCE_YOUTUBE, 'Youtube'),
     )
     code = StringField(required=True, unique=True)
     source = StringField(required=True, choices=SOURCES)
@@ -34,6 +44,7 @@ class Til(Document):
     extended = StringField()
     url = StringField()
     created = DateTimeField(default=datetime.datetime.utcnow)
+    status = StringField(required=True, default=STATUS_BACKLOG, choices=STATUSES)
     meta = {'collection': 'tils'}
 
     def __repr__(self):
