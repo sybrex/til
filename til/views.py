@@ -3,7 +3,7 @@ from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
 from til import app, bcrypt, forms
-from til.models import User
+from til.models import User, Til
 
 
 @app.context_processor
@@ -44,7 +44,8 @@ def current():
 @app.route('/backlog')
 @login_required
 def backlog():
-    return render_template('backlog.html')
+    posts = Til.objects(status=Til.STATUS_BACKLOG).order_by('-created')
+    return render_template('backlog.html', posts=posts)
 
 
 @app.route('/icebox')
