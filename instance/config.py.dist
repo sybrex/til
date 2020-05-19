@@ -1,6 +1,23 @@
 DEBUG = True
-SECRET_KEY = 'abc'
+SECRET_KEY = ''
 
 MONGODB_HOST = 'localhost'
 MONGODB_DB = 'til'
 MONGODB_PORT = 27017
+
+REDDIT_USERNAME = ''
+REDDIT_PASSWORD = ''
+REDDIT_CLIENT_ID = ''
+REDDIT_CLIENT_SECRET = ''
+REDDIT_USER_AGENT = 'fakebot3
+REDDIT_SUBREDDITS = [
+    'flask',
+    'fastapi',
+    'django',
+    'asyncio',
+    'darknetdiaries',
+    'learnpython',
+    'php',
+    'python',
+    'webdev'
+]
