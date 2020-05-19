@@ -1,0 +1,6 @@
+DEBUG = True
+SECRET_KEY = 'abc'
+
+MONGODB_HOST = 'localhost'
+MONGODB_DB = 'til'
+MONGODB_PORT = 27017
