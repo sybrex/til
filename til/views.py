@@ -57,8 +57,11 @@ def icebox():
 def til_status():
     status = request.form.get('status')
     ids = request.form.getlist('ids')
+    print(request.form)
+    print(status)
+    print(ids)
     if any(status in code for code in Til.STATUSES) and len(ids) > 0:
         Til.objects(code__in=ids).update(set__status=status)
-        return {'success': True}
+        return {'status': True}
     else:
-        return {'success': False}
+        return {'status': False}

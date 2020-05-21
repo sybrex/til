@@ -14,20 +14,20 @@
     </header>
 
     <div>
-        <button type="button" class="btn btn-danger float-right">Archive all</button>
+        <button type="button" id="btn-archive" class="btn btn-danger float-right">Archive all</button>
     </div>
 
     <table class="table table-striped table-dark table-sm mt-2">
     <tbody>
         {% for post in posts %}
-        <tr class="d-flex">
+        <tr id="{{ post.code }}" class="d-flex til-post">
             <td class="col-1">
                 <a href="{{ post.url }}" target="_blank">{{ post.source }}<br>{{ post.author }}</a>
             </td>
             <td class="col-9">
                 {% if post.extended %}
-                    <a data-toggle="collapse" href="#{{ post.code }}" aria-expanded="false" aria-controls="{{ post.code }}">{{ post.content }}</a>
-                    <div class="collapse" id="{{ post.code }}">
+                    <a data-toggle="collapse" href="#{{ post.code }}" aria-expanded="false" aria-controls="collapse-{{ post.code }}">{{ post.content }}</a>
+                    <div class="collapse" id="collapse-{{ post.code }}">
                         <div class="card card-body text-white bg-dark">
                             {{ post.extended }}
                         </div>
@@ -41,8 +41,8 @@
                 {{ post.created.strftime('%H:%M:%S') }}
             </td>
             <td class="col-1">
-                <button type="button" class="btn-sm btn-success">cur</button>
-                <button type="button" class="btn-sm btn-primary">ice</button>
+                <button type="button" data-row="{{ post.code }}" class="btn-sm btn-success btn-current">cur</button>
+                <button type="button" data-row="{{ post.code }}" class="btn-sm btn-primary btn-icebox">ice</button>
             </td>
         </tr>
         {% endfor %}
