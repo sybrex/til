@@ -37,7 +37,8 @@ def logout():
 @app.route('/current')
 @login_required
 def current():
-    return render_template('current.html')
+    posts = Til.objects(status=Til.STATUS_CURRENT).order_by('-created')
+    return render_template('current.html', posts=posts)
 
 
 @app.route('/backlog')
@@ -50,14 +51,15 @@ def backlog():
 @app.route('/icebox')
 @login_required
 def icebox():
-    return render_template('admin/icebox.html')
+    posts = Til.objects(status=Til.STATUS_ICEBOX).order_by('-created')
+    return render_template('icebox.html', posts=posts)
 
 
 @app.route('/status', methods=['POST'])
+@login_required
 def til_status():
     status = request.form.get('status')
-    ids = request.form.getlist('ids')
-    print(request.form)
+    ids = request.form.getlist('ids[]')
     print(status)
     print(ids)
     if any(status in code for code in Til.STATUSES) and len(ids) > 0:

@@ -2,22 +2,14 @@
 
 {% block content %}
 <div class="cover-container d-flex w-100 h-100 p-2 mx-auto flex-column">
-    <header class="masthead">
-        <div class="inner">
-            <h3 class="masthead-brand">Today I Learned</h3>
-            <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link" href="#">Current</a>
-                <a class="nav-link active" href="#">Backlog</a>
-                <a class="nav-link" href="#">Icebox</a>
-            </nav>
-        </div>
-    </header>
+    {% include 'navigation.html' %}
 
+    {% if posts %}
     <div>
         <button type="button" id="btn-archive" class="btn btn-danger float-right">Archive all</button>
     </div>
 
-    <table class="table table-striped table-dark table-sm mt-2">
+    <table id="tils-table" class="table table-striped table-dark table-sm mt-2">
     <tbody>
         {% for post in posts %}
         <tr id="{{ post.code }}" class="d-flex til-post">
@@ -26,7 +18,7 @@
             </td>
             <td class="col-9">
                 {% if post.extended %}
-                    <a data-toggle="collapse" href="#{{ post.code }}" aria-expanded="false" aria-controls="collapse-{{ post.code }}">{{ post.content }}</a>
+                    <a data-toggle="collapse" href="#collapse-{{ post.code }}" aria-expanded="false" aria-controls="collapse-{{ post.code }}">{{ post.content }}</a>
                     <div class="collapse" id="collapse-{{ post.code }}">
                         <div class="card card-body text-white bg-dark">
                             {{ post.extended }}
@@ -48,6 +40,7 @@
         {% endfor %}
     </tbody>
     </table>
+    {% endif %}
 
 </div>
 {% endblock %}
