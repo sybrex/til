@@ -1,4 +1,3 @@
-import os
 from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
@@ -52,3 +51,14 @@ def backlog():
 @login_required
 def icebox():
     return render_template('admin/icebox.html')
+
+
+@app.route('/status', methods=['POST'])
+def til_status():
+    status = request.form.get('status')
+    ids = request.form.getlist('ids')
+    if any(status in code for code in Til.STATUSES) and len(ids) > 0:
+        Til.objects(code__in=ids).update(set__status=status)
+        return {'success': True}
+    else:
+        return {'success': False}
