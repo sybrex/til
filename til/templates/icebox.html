@@ -8,13 +8,13 @@
     <table id="tils-table" class="table table-striped table-dark table-sm mt-2">
     <tbody>
         {% for post in posts %}
-        <tr id="{{ post.code }}" class="d-flex til-post">
-            <td class="col-1">
+        <tr id="{{ post.code }}" class="til-post">
+            <td class="d-none d-sm-block">
                 <a href="{{ post.url }}" target="_blank">{{ post.source }}<br>{{ post.author }}</a>
             </td>
-            <td class="col-9">
+            <td>
                 {% if post.extended %}
-                    <a data-toggle="collapse" href="#collapse-{{ post.code }}" aria-expanded="false" aria-controls="collapse-{{ post.code }}">{{ post.content }}</a>
+                    <a data-toggle="collapse" href="#collapse-{{ post.code }}" aria-expanded="false" aria-controls="collapse-{{ post.code }}" class="internal-link">{{ post.content }}</a>
                     <div class="collapse" id="collapse-{{ post.code }}">
                         <div class="card card-body text-white bg-dark">
                             {{ post.extended }}
@@ -24,11 +24,11 @@
                     {{ post.content }}
                 {% endif %}
             </td>
-            <td class="col-1">
+            <td class="d-none d-sm-block">
                 {{ post.created.strftime('%Y.%m.%d') }}<br>
                 {{ post.created.strftime('%H:%M:%S') }}
             </td>
-            <td class="col-1">
+            <td class="action-buttons-1">
                 <button type="button" data-row="{{ post.code }}" class="btn-sm btn-danger btn-archive">archive</button>
             </td>
         </tr>

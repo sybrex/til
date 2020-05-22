@@ -116,3 +116,20 @@ a:hover {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.action-buttons-2 {
+  width: 140px;
+}
+
+.action-buttons-1 {
+  width: 70px;
+}
+
+a.internal-link {
+  text-decoration: none;
+  border-bottom: 1px dashed #fff;
+}
+
+a.internal-link:hover  {
+  border-bottom: 1px solid #fff;
+}
