@@ -12,7 +12,8 @@ def inject_year():
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    posts = Til.objects(status=Til.STATUS_CURRENT).order_by('-created')
+    return render_template('home.html', posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])

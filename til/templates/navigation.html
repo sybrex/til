@@ -1,10 +1,13 @@
 <header class="masthead">
     <div class="inner">
-        <h3 class="masthead-brand">Today I Learned</h3>
+        <a href="/">
+            <h3 class="masthead-brand">Today I Learned</h3>
+        </a>
         <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link{% if request.endpoint == 'current' %} active{% endif%}" href="{{ url_for('current') }}">Current</a>
             <a class="nav-link{% if request.endpoint == 'backlog' %} active{% endif%}" href="{{ url_for('backlog') }}">Backlog</a>
             <a class="nav-link{% if request.endpoint == 'icebox' %} active{% endif%}" href="{{ url_for('icebox') }}">Icebox</a>
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
         </nav>
     </div>
 </header>
