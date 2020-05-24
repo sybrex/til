@@ -10,6 +10,7 @@ flask-login = "*"
 flask-bcrypt = "*"
 python-dotenv = "*"
 praw = "*"
+tweepy = "*"
 
 [dev-packages]
 
