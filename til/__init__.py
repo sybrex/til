@@ -4,8 +4,8 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
 
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('config.py')
+app = Flask(__name__)
+app.config.from_pyfile('settings.py')
 
 db = MongoEngine()
 db.init_app(app)
