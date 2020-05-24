@@ -1,9 +1,8 @@
-from datetime import datetime
 import tweepy
 from til import app
 
 
-TWEETS_LIMIT = 5
+TWEETS_LIMIT = 100
 
 
 def twitter_client():
@@ -15,18 +14,13 @@ def twitter_client():
 def fetch_posts():
     posts = []
     twitter = twitter_client()
-    for tweet in twitter.home_timeline(count=TWEETS_LIMIT):
-        print(tweet.id)
-        print(tweet.text)
-        print(tweet.created_at)
-        print(tweet.source)
-        #print(tweet.user)
-        # posts.append({
-        #     'code': submission.name,
-        #     'author': submission.subreddit.display_name.lower(),
-        #     'content': submission.title,
-        #     'extended': submission.selftext if submission.is_self else '',
-        #     'url': submission.url,
-        #     'created': datetime.utcfromtimestamp(submission.created_utc)
-        # })
+    for tweet in twitter.home_timeline(count=TWEETS_LIMIT, tweet_mode='extended'):
+        posts.append({
+            'code': tweet.id_str,
+            'author': tweet.user.name,
+            'content':  tweet.full_text,
+            'extended': '',
+            'url': f'https://twitter.com/{tweet.user.screen_name}/status/{tweet.id_str}',
+            'created': tweet.created_at
+        })
     return posts

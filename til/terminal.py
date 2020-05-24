@@ -36,11 +36,10 @@ def twitter_sync():
     new_posts_count = 0
     for post in posts:
         post['source'] = Til.SOURCE_TWITTER
-        print(post)
         til_post = Til(**post)
-     #   try:
-      #      til_post.save()
-       #     new_posts_count += 1
-       # except NotUniqueError:
-        #    pass
+        try:
+            til_post.save()
+            new_posts_count += 1
+        except NotUniqueError:
+            pass
     print(f'New tweets: {new_posts_count}')
