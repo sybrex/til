@@ -1,5 +1,5 @@
 import click
-from til import app, bcrypt, reddit
+from til import app, bcrypt, reddit, twitter
 from til.models import User, Til
 from mongoengine import NotUniqueError
 
@@ -28,3 +28,18 @@ def reddit_sync():
             except NotUniqueError:
                 pass
         print(f'{subreddit}: {new_posts_count}')
+
+
+@app.cli.command('twitter-sync')
+def twitter_sync():
+    posts = twitter.fetch_posts()
+    new_posts_count = 0
+    for post in posts:
+        post['source'] = Til.SOURCE_TWITTER
+        til_post = Til(**post)
+        try:
+            til_post.save()
+            new_posts_count += 1
+        except NotUniqueError:
+            pass
+    print(f'New tweets: {new_posts_count}')
