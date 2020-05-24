@@ -13,11 +13,10 @@ def reddit_client():
     )
 
 
-def fetch_posts(subreddit, before=None):
+def fetch_posts(subreddit):
     posts = []
     reddit = reddit_client()
-    params = {'before': before} if before else None
-    for submission in reddit.subreddit(subreddit).new(limit=10, params=params):
+    for submission in reddit.subreddit(subreddit).top(time_filter='day'):
         posts.append({
             'code': submission.name,
             'author': submission.subreddit.display_name.lower(),
