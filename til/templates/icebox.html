@@ -28,7 +28,8 @@
                 {{ post.created.strftime('%Y.%m.%d') }}<br>
                 {{ post.created.strftime('%H:%M:%S') }}
             </td>
-            <td class="action-buttons-1">
+            <td class="action-buttons-2">
+                <button type="button" data-row="{{ post.code }}" class="btn-sm btn-success btn-current">current</button>
                 <button type="button" data-row="{{ post.code }}" class="btn-sm btn-danger btn-archive">archive</button>
             </td>
         </tr>

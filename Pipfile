@@ -13,6 +13,7 @@ praw = "*"
 tweepy = "*"
 fabric = "*"
 uwsgi = "*"
+flask-markdown = "*"
 
 [dev-packages]
 

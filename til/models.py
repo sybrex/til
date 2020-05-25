@@ -45,6 +45,7 @@ class Til(Document):
     url = StringField()
     created = DateTimeField(default=datetime.datetime.utcnow)
     status = StringField(required=True, default=STATUS_BACKLOG, choices=STATUSES)
+    visible = BooleanField(required=True, default=False)
     meta = {'collection': 'tils'}
 
     def __repr__(self):

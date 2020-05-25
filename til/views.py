@@ -7,8 +7,7 @@ from til.models import User, Til
 
 @app.route('/')
 def home():
-    today = datetime.now().date()
-    posts = Til.objects(status=Til.STATUS_CURRENT, created__gt=today).order_by('-created')
+    posts = Til.objects(visible=True).order_by('-created')
     return render_template('home.html', posts=posts)
 
 
