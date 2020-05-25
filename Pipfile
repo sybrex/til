@@ -12,6 +12,7 @@ python-dotenv = "*"
 praw = "*"
 tweepy = "*"
 fabric = "*"
+uwsgi = "*"
 
 [dev-packages]
 
