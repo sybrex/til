@@ -11,6 +11,7 @@ flask-bcrypt = "*"
 python-dotenv = "*"
 praw = "*"
 tweepy = "*"
+fabric = "*"
 
 [dev-packages]
 

@@ -5,14 +5,10 @@ from til import app, bcrypt, forms
 from til.models import User, Til
 
 
-@app.context_processor
-def inject_year():
-    return dict(year=datetime.now().year)
-
-
 @app.route('/')
 def home():
-    posts = Til.objects(status=Til.STATUS_CURRENT).order_by('-created')
+    today = datetime.now().date()
+    posts = Til.objects(status=Til.STATUS_CURRENT, created__gt=today).order_by('-created')
     return render_template('home.html', posts=posts)
 
 
