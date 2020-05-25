@@ -40,14 +40,17 @@ def download(c, remote, local):
 
 
 @task
-def deploy(c, branch='master'):
+def deploy(c, branch='master', deps=False):
     """
     Deploy updates to server
-    pipenv run fab deploy --branch master --hosts ip
+    pipenv run fab deploy --branch master --deps --hosts ip
     """
     with c.cd(PROJECT_PATH):
         print('Update code')
         c.run(f'git fetch origin && git checkout {branch} && git pull origin {branch}')
+        if deps:
+            print('Installing dependencies')
+            c.run('pipenv install')
         service(c, SYSTEMD_SERVICE, 'restart')
 
 
