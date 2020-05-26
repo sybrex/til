@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="cover-container d-flex w-100 h-100 p-2 mx-auto flex-column">
+    <header class="masthead">
+    <div class="inner">
+        <a href="/">
+            <h3 class="masthead-brand">Today I Learned</h3>
+        </a>
+        <nav class="nav nav-masthead justify-content-center">
+            {% if current_user.is_authenticated %}
+            <a class="nav-link" href="{{ url_for('current') }}">Current</a>
+            <a class="nav-link" href="{{ url_for('backlog') }}">Backlog</a>
+            <a class="nav-link" href="{{ url_for('icebox') }}">Icebox</a>
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </nav>
+    </div>
+    </header>
+
+    <form method="post" action="{{ url_for(action, id=id) }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.title.label(class="form-control-label") }}
+            {% if form.title.errors %}
+            {{ form.title(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.content.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.title(class="form-control") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.content.label(class="form-control-label") }}
+            {{ form.content(class="form-control", rows="15") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+    <form method="post" action="{{ url_for('remove_til', id=id) }}">
+        <input class="btn btn-danger" type="submit" value="Archive">
+    </form>
+
+</div>
+{% endblock %}

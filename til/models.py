@@ -32,10 +32,12 @@ class Til(Document):
     SOURCE_REDDIT = 'reddit'
     SOURCE_TWITTER = 'twitter'
     SOURCE_YOUTUBE = 'youtube'
+    SOURCE_ME = 'me'
     SOURCES = (
         (SOURCE_REDDIT, 'Reddit'),
         (SOURCE_TWITTER, 'Twitter'),
         (SOURCE_YOUTUBE, 'Youtube'),
+        (SOURCE_ME, 'Me'),
     )
     code = StringField(required=True, unique=True)
     source = StringField(required=True, choices=SOURCES)
