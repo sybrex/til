@@ -32,10 +32,12 @@ class Til(Document):
     SOURCE_REDDIT = 'reddit'
     SOURCE_TWITTER = 'twitter'
     SOURCE_YOUTUBE = 'youtube'
+    SOURCE_ME = 'me'
     SOURCES = (
         (SOURCE_REDDIT, 'Reddit'),
         (SOURCE_TWITTER, 'Twitter'),
         (SOURCE_YOUTUBE, 'Youtube'),
+        (SOURCE_ME, 'Me'),
     )
     code = StringField(required=True, unique=True)
     source = StringField(required=True, choices=SOURCES)
@@ -45,6 +47,7 @@ class Til(Document):
     url = StringField()
     created = DateTimeField(default=datetime.datetime.utcnow)
     status = StringField(required=True, default=STATUS_BACKLOG, choices=STATUSES)
+    visible = BooleanField(required=True, default=False)
     meta = {'collection': 'tils'}
 
     def __repr__(self):

@@ -4,6 +4,10 @@
 <div class="cover-container d-flex w-100 h-100 p-2 mx-auto flex-column">
     {% include 'navigation.html' %}
 
+    <div>
+        <a href="{{ url_for('create_til') }}" class="btn btn-success float-right">New</a>
+    </div>
+
     {% if posts %}
     <table id="tils-table" class="table table-striped table-dark table-sm mt-2">
     <tbody>
@@ -12,12 +16,12 @@
             <td class="d-none d-sm-block">
                 <a href="{{ post.url }}" target="_blank">{{ post.source }}<br>{{ post.author }}</a>
             </td>
-            <td>
+            <td class="post-content">
                 {% if post.extended %}
                     <a data-toggle="collapse" href="#collapse-{{ post.code }}" aria-expanded="false" aria-controls="collapse-{{ post.code }}" class="internal-link">{{ post.content }}</a>
                     <div class="collapse" id="collapse-{{ post.code }}">
                         <div class="card card-body text-white bg-dark">
-                            {{ post.extended }}
+                            {{ post.extended|markdown }}
                         </div>
                     </div>
                 {% else %}
@@ -28,8 +32,13 @@
                 {{ post.created.strftime('%Y.%m.%d') }}<br>
                 {{ post.created.strftime('%H:%M:%S') }}
             </td>
-            <td class="action-buttons-1">
-                <button type="button" data-row="{{ post.code }}" class="btn-sm btn-danger btn-archive">archive</button>
+            <td class="action-buttons-2">
+                <a href="{{ url_for('update_til', id=post.code) }}" data-row="{{ post.code }}" class="btn btn-sm btn-secondary btn-edit">edit</a>
+                {% if post.visible %}
+                <button type="button" data-row="{{ post.code }}" class="btn-sm btn-success btn-toggle-visible">hide</button>
+                {% else %}
+                <button type="button" data-row="{{ post.code }}" class="btn-sm btn-warning btn-toggle-visible">show</button>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}
