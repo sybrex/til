@@ -43,9 +43,11 @@
             {{ form.submit(class="btn btn-primary") }}
         </div>
     </form>
+    {% if id %}
     <form method="post" action="{{ url_for('remove_til', id=id) }}">
         <input class="btn btn-danger" type="submit" value="Archive">
     </form>
+    {% endif %}
 
 </div>
 {% endblock %}
