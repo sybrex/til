@@ -21,7 +21,7 @@
     </header>
 
     {% if posts %}
-    <table id="tils-table" class="table table-striped table-dark table-sm mt-2">
+    <table id="tils-table" class="table table-striped table-sm mt-2">
     <tbody>
         {% for post in posts %}
         <tr id="{{ post.code }}" class="til-post">
@@ -32,7 +32,7 @@
                 {% if post.extended %}
                     <a data-toggle="collapse" href="#collapse-{{ post.code }}" aria-expanded="false" aria-controls="collapse-{{ post.code }}" class="internal-link">{{ post.content }}</a>
                     <div class="collapse" id="collapse-{{ post.code }}">
-                        <div class="card card-body text-white bg-dark">
+                        <div class="card card-body">
                             {{ post.extended|markdown }}
                         </div>
                     </div>
@@ -41,8 +41,8 @@
                 {% endif %}
             </td>
             <td class="d-none d-sm-block">
-                {{ post.created.strftime('%Y.%m.%d') }}<br>
-                {{ post.created.strftime('%H:%M:%S') }}
+                {{ post.learned.strftime('%Y.%m.%d') }}<br>
+                {{ post.learned.strftime('%H:%M:%S') }}
             </td>
         </tr>
         {% endfor %}

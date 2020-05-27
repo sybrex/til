@@ -46,6 +46,7 @@ class Til(Document):
     extended = StringField()
     url = StringField()
     created = DateTimeField(default=datetime.datetime.utcnow)
+    learned = DateTimeField(default=datetime.datetime.utcnow)
     status = StringField(required=True, default=STATUS_BACKLOG, choices=STATUSES)
     visible = BooleanField(required=True, default=False)
     meta = {'collection': 'tils'}

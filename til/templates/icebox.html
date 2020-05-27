@@ -5,7 +5,7 @@
     {% include 'navigation.html' %}
 
     {% if posts %}
-    <table id="tils-table" class="table table-striped table-dark table-sm mt-2">
+    <table id="tils-table" class="table table-striped table-sm mt-2">
     <tbody>
         {% for post in posts %}
         <tr id="{{ post.code }}" class="til-post">
@@ -16,7 +16,7 @@
                 {% if post.extended %}
                     <a data-toggle="collapse" href="#collapse-{{ post.code }}" aria-expanded="false" aria-controls="collapse-{{ post.code }}" class="internal-link">{{ post.content }}</a>
                     <div class="collapse" id="collapse-{{ post.code }}">
-                        <div class="card card-body text-white bg-dark">
+                        <div class="card card-body">
                             {{ post.extended|markdown }}
                         </div>
                     </div>
@@ -29,8 +29,8 @@
                 {{ post.created.strftime('%H:%M:%S') }}
             </td>
             <td class="action-buttons-2">
-                <button type="button" data-row="{{ post.code }}" class="btn-sm btn-success btn-current">current</button>
-                <button type="button" data-row="{{ post.code }}" class="btn-sm btn-danger btn-archive">archive</button>
+                <button type="button" data-row="{{ post.code }}" class="btn btn-sm btn-success btn-current">current</button>
+                <button type="button" data-row="{{ post.code }}" class="btn btn-sm btn-danger btn-archive">archive</button>
             </td>
         </tr>
         {% endfor %}

@@ -1,9 +1,10 @@
 html,
 body {
   height: 100%;
-  background-color: #333;
+  background-color: #fff;
   font-family: 'Inconsolata', 'Courier New', serif;
   font-size: 13px;
+  color: #515151;
 }
 
 body {
@@ -11,13 +12,12 @@ body {
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  color: #fff;
 }
 
 a,
 a:focus,
 a:hover {
-  color: #fff;
+  color: #344A5F;
 }
 
 .btn-secondary,
@@ -44,14 +44,14 @@ a:hover {
 .nav-masthead .nav-link {
   padding: .25rem 0;
   font-weight: 700;
-  color: rgba(255, 255, 255, .5);
+  color: #344A5F;
   background-color: transparent;
   border-bottom: .25rem solid transparent;
 }
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, .25);
+  border-bottom-color: #344A5F;
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -59,8 +59,8 @@ a:hover {
 }
 
 .nav-masthead .active {
-  color: #fff;
-  border-bottom-color: #fff;
+  color: #344A5F;
+  border-bottom-color: #344A5F;
 }
 
 @media (min-width: 48em) {
@@ -81,7 +81,7 @@ a:hover {
 }
 
 .mastfoot {
-  color: rgba(255, 255, 255, .5);
+  color: #344A5F;
 }
 
 .form-signin {
@@ -129,9 +129,9 @@ a:hover {
 
 a.internal-link {
   text-decoration: none;
-  border-bottom: 1px dashed #fff;
+  border-bottom: 1px dashed #344A5F;
 }
 
 a.internal-link:hover  {
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #344A5F;
 }

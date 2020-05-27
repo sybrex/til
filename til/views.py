@@ -2,14 +2,8 @@ from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, logout_user, login_required
 from til import app, bcrypt, forms
 from til.models import User, Til
-from datetime import datetime
+from datetime import datetime, timedelta
 import uuid
-
-
-@app.route('/')
-def home():
-    posts = Til.objects(visible=True).order_by('-created')
-    return render_template('home.html', posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -29,6 +23,20 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+@app.route('/')
+def home():
+    posts = Til.objects(visible=True).order_by('-learned')
+    return render_template('home.html', posts=posts)
+
+
+@app.route('/date/<date>')
+def date_tils(date):
+    date = datetime.strptime(date, '%Y-%m-%d') if date else datetime.today().date()
+    next_date = date + timedelta(days=1)
+    posts = Til.objects(visible=True, learned__gte=date, learned__lt=next_date).order_by('-learned')
+    return render_template('date.xml', posts=posts), 200, {'Content-Type': 'application/xml'}
 
 
 @app.route('/current')
@@ -92,7 +100,6 @@ def create_til():
                 content=form.title.data,
                 extended=form.content.data,
                 url='/',
-                created=datetime.now(),
                 status=Til.STATUS_CURRENT
             )
             til_post.save()
@@ -120,6 +127,8 @@ def toggle_visible():
     try:
         post = Til.objects(code=request.form.get('id')).get()
         post.visible = not post.visible
+        if post.visible:
+            post.learned = datetime.utcnow()
         post.save()
         return {'status': True, 'visible': post.visible}
     except Til.DoesNotExist:
