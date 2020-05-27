@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tils>
+<data>
     {% if posts %}
     {% for post in posts %}
     <post id="{{ post.code }}" learned="{{ post.learned.strftime('%Y.%m.%d %H:%M:%S') }}" source="{{ post.source }}" author="{{ post.author }}">
@@ -8,4 +8,4 @@
     </post>
     {% endfor %}
     {% endif %}
-</tils>
+</data>
