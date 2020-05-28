@@ -31,8 +31,13 @@
                 {% endif %}
             </td>
             <td class="d-none d-sm-block">
+                {% if post.visible %}
+                {{ post.learned.strftime('%Y.%m.%d') }}<br>
+                {{ post.learned.strftime('%H:%M:%S') }}
+                {% else %}
                 {{ post.created.strftime('%Y.%m.%d') }}<br>
                 {{ post.created.strftime('%H:%M:%S') }}
+                {% endif %}
             </td>
             <td class="action-buttons-2">
                 <a href="{{ url_for('update_til', id=post.code) }}" data-row="{{ post.code }}" class="btn btn-sm btn-dark btn-edit">edit</a>
