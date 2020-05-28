@@ -1,5 +1,6 @@
 import tweepy
 from til import app
+import html
 
 
 TWEETS_LIMIT = 100
@@ -18,7 +19,7 @@ def fetch_posts():
         posts.append({
             'code': tweet.id_str,
             'author': tweet.user.name,
-            'content':  tweet.full_text,
+            'content':  html.escape(tweet.full_text),
             'extended': '',
             'url': f'https://twitter.com/{tweet.user.screen_name}/status/{tweet.id_str}',
             'created': tweet.created_at

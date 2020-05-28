@@ -1,5 +1,6 @@
 from datetime import datetime
 import praw
+import html
 from til import app
 
 
@@ -20,8 +21,8 @@ def fetch_posts(subreddit):
         posts.append({
             'code': submission.name,
             'author': submission.subreddit.display_name.lower(),
-            'content': submission.title,
-            'extended': submission.selftext if submission.is_self else '',
+            'content': html.escape(submission.title),
+            'extended': html.escape(submission.selftext) if submission.is_self else '',
             'url': submission.url,
             'created': datetime.utcfromtimestamp(submission.created_utc)
         })

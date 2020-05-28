@@ -4,6 +4,7 @@ from til import app, bcrypt, forms
 from til.models import User, Til
 from datetime import datetime, timedelta
 import uuid
+import html
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -97,8 +98,8 @@ def create_til():
                 code=str(uuid.uuid4()),
                 source=Til.SOURCE_ME,
                 author='',
-                content=form.title.data,
-                extended=form.content.data,
+                content=html.escape(form.title.data),
+                extended=html.escape(form.content.data),
                 url='/',
                 status=Til.STATUS_CURRENT
             )
