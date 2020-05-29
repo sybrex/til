@@ -34,9 +34,14 @@ def home():
 
 @app.route('/date/<date>')
 def date_tils(date):
-    date = datetime.strptime(date, '%Y-%m-%d') if date else datetime.today().date()
-    next_date = date + timedelta(days=1)
-    posts = Til.objects(visible=True, learned__gte=date, learned__lt=next_date).order_by('-learned')
+    posts = []
+    try:
+        date = datetime.strptime(date, '%Y-%m-%d') if date else datetime.today().date()
+    except ValueError:
+        date = None
+    if date:
+        next_date = date + timedelta(days=1)
+        posts = Til.objects(visible=True, learned__gte=date, learned__lt=next_date).order_by('-learned')
     return render_template('date.xml', posts=posts), 200, {'Content-Type': 'application/xml'}
 
 
