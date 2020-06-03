@@ -21,7 +21,7 @@ class YoutubePreprocessor(Preprocessor):
         text = '\n'.join(lines)
         text = re.sub(
             r'\[youtube\](.*)?v=(.*)\[youtube\]',
-            r'<iframe width="560" height="315" src="https://www.youtube.com/embed/\2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+            r'<div class="youtube"><iframe src="https://www.youtube.com/embed/\2" frameborder="0" allowfullscreen class="video"></iframe></div>',
             text
         )
         return text.split('\n')
