@@ -49,7 +49,14 @@ class Til(Document):
     learned = DateTimeField(default=datetime.datetime.utcnow)
     status = StringField(required=True, default=STATUS_BACKLOG, choices=STATUSES)
     visible = BooleanField(required=True, default=False)
-    meta = {'collection': 'tils'}
+    meta = {
+        'collection': 'tils',
+        'indexes': [
+            'code',
+            'status',
+            'learned'
+        ]
+    }
 
     def __repr__(self):
         return f"Til('{self.code}', {self.content[:20]} '{self.created}')"
