@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    {% if posts %}
+    {% for post in posts %}
+    <post id="{{ post.code }}" learned="{{ post.learned.strftime('%Y.%m.%d %H:%M:%S') }}" source="{{ post.source }}" author="{{ post.author }}">
+        <title>{{ post.content }}</title>
+    </post>
+    {% endfor %}
+    {% endif %}
+</data>

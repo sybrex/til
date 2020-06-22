@@ -45,6 +45,12 @@ def date_tils(date):
     return render_template('date.xml', posts=posts), 200, {'Content-Type': 'application/xml'}
 
 
+@app.route('/feed')
+def feed_tils():
+    posts = Til.objects(visible=True).order_by('-learned')
+    return render_template('feed.xml', posts=posts), 200, {'Content-Type': 'application/xml'}
+
+
 @app.route('/current')
 @login_required
 def current():
